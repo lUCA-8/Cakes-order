@@ -1,3 +1,6 @@
+<?php
+include('session.php');
+?>
 <!doctype html><html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -7,61 +10,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>WeWe order</title>
+    <title>Welcome to our Hotel!</title>
 </head>
 <body>
-<?php
-
-if ($_POST["username"] != 'admin') {
-    echo "<h1>Sorry, you do not have access!</h1>";
-    exit;
-}
-
-?>
-
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>Cakes order</h3>
-
+            <h3>Welcome to our Hotel!</h3>
+            <p>Show All Orders</p>
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <h3>Frankfurt</h3>
-            <?php
-                $file1 = "orders/Frankfurt/".date('Y-m-d').".html";
-                $myfile = fopen($file1, "r");
-                echo fread($myfile,filesize($file1));
-            ?>
-        </div>
-        <div class="col-md-6">
-            <h3>Bad Vilbel</h3>
-            <?php
-                $file2 = "orders/Bad Vilbel/".date('Y-m-d').".html";
-                $myfile = fopen($file2, "r");
-                echo fread($myfile,filesize($file1));
-            ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Lessing</h3>
-            <?php
-                $file3 = "orders/Lessing/".date('Y-m-d').".html";
-                $myfile = fopen($file3, "r");
-                echo fread($myfile,filesize($file1));
-            ?>
-        </div>
-        <div class="col-md-6">
-            <h3>Alice</h3>
-            <?php
-                $file4 = "orders/Alice/".date('Y-m-d').".html";
-                $myfile = fopen($file4, "r");
-                echo fread($myfile,filesize($file1));
-            ?>
+        <div class="col-md-4">
+            <h3>User 1</h3>
+            <iframe src="/orders/user1/2019-06-04.html" frameborder="0" width="600"></iframe>
         </div>
     </div>
 </div>

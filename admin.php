@@ -1,3 +1,30 @@
+<?php
+include("config.php");
+session_start();
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from form
+
+    $myusername = mysqli_real_escape_string($db,$_POST['username']);
+    $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+
+    $sql = "SELECT id FROM users WHERE username = '$myusername' and passcode = '$mypassword'";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $active = $row['active'];
+
+    $count = mysqli_num_rows($result);
+
+    if($count == 1) {
+        session_register("myusername");
+        $_SESSION['login_user'] = $myusername;
+
+        header("location: admin_main.php");
+    }else {
+        $error = "Your Login Name or Password is invalid";
+    }
+}
+?>
 <!doctype html><html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -7,18 +34,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>WeWe Order</title>
+    <title>Welcome to our Hotel!</title>
 </head>
 <body>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h3>Cakes order</h3>
+            <h3>Welcome to our Hotel!</h3>
             <hr>
         </div>
         <div class="col-offset-sm-4 col-sm-4">
-            <h3>Sign In</h3>
-            <form name="login" method="post" action="admin_main.php">
+            <h3>Sign in</h3>
+            <form action = "" method = "post">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username">
@@ -27,7 +55,7 @@
                     <label for="pwd">Password:</label>
                     <input type="password" class="form-control" id="pwd" name="pwd">
                 </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
