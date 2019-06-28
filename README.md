@@ -19,6 +19,8 @@
 
 ## Software Solution 
 - There is the flowchart which explains the data flows.
+![Chart](chart.png)
 
 
 ## Updates / Next steps:
+- Use the database relations.
